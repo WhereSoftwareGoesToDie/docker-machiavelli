@@ -34,4 +34,4 @@ WORKDIR /machiavelli
 
 EXPOSE 80
 
-ENTRYPOINT "/start-machiavelli.sh"
+ENTRYPOINT ["/start-machiavelli.sh"]
