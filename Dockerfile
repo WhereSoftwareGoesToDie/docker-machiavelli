@@ -21,7 +21,7 @@ RUN gem install bundler
 RUN git clone https://github.com/anchor/machiavelli
 RUN cd machiavelli && bundle install --without development
 
-ADD start-machiavelli.sh /start-machiavelli.sh
+ADD docker-entrypoint.sh /entrypoint.sh
 
 # Uniconr-based setup
 ADD unicorn.rb /machiavelli/config/unicorn.rb
@@ -32,6 +32,6 @@ RUN mkdir -p /machiavelli/log
 
 WORKDIR /machiavelli
 
-EXPOSE 80
+EXPOSE 3000
 
-ENTRYPOINT ["/start-machiavelli.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
