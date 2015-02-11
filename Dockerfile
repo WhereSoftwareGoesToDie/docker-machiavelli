@@ -18,20 +18,17 @@ RUN update-rc.d redis-server defaults
 
 RUN gem install bundler
 
-RUN git clone https://github.com/anchor/machiavelli
+RUN git clone https://github.com/anchor/machiavelli 
 RUN cd machiavelli && bundle install --without development
 
 ADD docker-entrypoint.sh /entrypoint.sh
 
-# Uniconr-based setup
-ADD unicorn.rb /machiavelli/config/unicorn.rb
-RUN mkdir -p /machiavelli/tmp/pids
-RUN mkdir -p /machiavelli/tmp/cache
-RUN mkdir -p /machiavelli/tmp/sockets
-RUN mkdir -p /machiavelli/log
-
 WORKDIR /machiavelli
 
-EXPOSE 3000
+EXPOSE 8080
+
+ENV RAILS_ENV production
+RUN cd /machiavelli && /etc/init.d/redis-server start && bundle exec rake assets:precompile
 
 ENTRYPOINT ["/entrypoint.sh"]
+
