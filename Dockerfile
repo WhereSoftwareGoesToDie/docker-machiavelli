@@ -25,7 +25,7 @@ ADD docker-entrypoint.sh /entrypoint.sh
 
 WORKDIR /machiavelli
 
-EXPOSE 8080
+EXPOSE 80
 
 ENV RAILS_ENV production
 RUN cd /machiavelli && /etc/init.d/redis-server start && bundle exec rake assets:precompile
