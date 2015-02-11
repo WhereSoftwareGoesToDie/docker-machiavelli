@@ -5,4 +5,4 @@ Docker build scripts for machiavelli
 
 Run the dockerised machiavelli using the host filesystem's config yaml file as the settings: 
 
-    docker run -v machiavelli-config.yml:/machiavelli/config/settings.yml anchor/machiavelli
+    docker run -p 8080:80 --name machiavelli -v machiavelli-config.yml:/machiavelli/config/settings.yml anchor/machiavelli
